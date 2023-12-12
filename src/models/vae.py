@@ -53,6 +53,7 @@ class VAE(nn.Module):
                 pz._chi2 = torch.distributions.Chi2(pz.df)  # fix from rsample
             px_z_params = self.dec(pz.sample(torch.Size([N])))
             means = get_mean_param(px_z_params)
+            #samples = self.px_z(*px_z_params).sample(torch.Size([K]))
             samples = self.px_z(px_z_params[0], px_z_params[1].clamp(min=0)).sample(torch.Size([K]))
 
         return mean, \
