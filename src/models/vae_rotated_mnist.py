@@ -112,7 +112,7 @@ class RotatedMNIST(VAE):
             transforms.Resize(size=(32, 32)),
             transforms.ToTensor(),
             transforms.Lambda(lambda p: p.clamp(Constants.eta, 1 - Constants.eta)),
-            transforms.RandomRotation(90)
+            transforms.RandomRotation(180)
         ])
         train_loader = DataLoader(
             datasets.MNIST('../data/rotated_mnist', train=True, download=True, transform=tx),
